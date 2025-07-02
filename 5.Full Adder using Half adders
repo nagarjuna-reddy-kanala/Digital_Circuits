@@ -1,0 +1,23 @@
+Verilog Code:
+
+module full_addr(input a,b,c, output sum, carry);
+half_adder h1(a,b,w1,w2);
+half_adder h2(w1,c,sum,w3);
+assign carry=w2|w3;
+endmodule
+
+TestBench:
+
+module tb3( );
+reg a,b,c; wire sum,carry;
+full_addr uut(a,b,c,sum,carry);
+initial
+begin
+ for ( integer count = 0; count < 8; count = count + 1)
+ begin
+ {a, b, c}= count[2:0];
+ #10;
+ end
+ $finish;
+ end
+endmodule

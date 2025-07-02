@@ -1,0 +1,22 @@
+Verilog Code:
+
+module x1_mux(a,b,s,out);
+input a,b,s;
+output out;
+assign out=((~s)&a)|(s&b);
+endmodule
+
+TestBench:
+
+module tb1( );
+reg a,b,s; wire out;
+x1_mux uut(a,b,s,out);
+initial
+begin
+a=0;b=1; s=0; #10
+a=0;b=1; s=1; #10
+a=1;b=0; s=0; #10
+a=1;b=0; s=1; #10
+$finish;
+end
+endmodule

@@ -1,0 +1,26 @@
+Verilog Code:
+
+module full_sub(input a,b,c,output d,bo);
+half_subtractor h1(a,b,w1,w2);
+half_subtractor h2(w1,c,d,w3);
+assign bo= w2|w3;
+endmodule
+
+TestBench:
+
+module tb6( );
+reg a,b,c; wire d,bo;
+full_sub uut(a,b,c ,d,bo);
+initial
+begin
+a=0;b=0;c=0; #10
+a=0;b=0;c=1; #10
+a=0;b=1;c=0; #10
+a=0;b=1;c=1; #10
+a=1;b=0;c=0; #10
+a=1;b=0;c=1; #10
+a=1;b=1;c=0; #10
+a=1;b=1;c=1; #10
+$finish;
+end
+endmodule

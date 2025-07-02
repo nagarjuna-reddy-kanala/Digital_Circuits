@@ -1,0 +1,28 @@
+Verilog Code:
+
+module full_subtractor(input a,b,c ,output d, bo );
+assign d=a^b^c;
+assign w1=(~a)&b;
+assign w2=(~a)&c;
+assign w3=b&c;
+assign bo= w1|w2|w3;
+endmodule
+
+TestBench:
+
+module tb5( );
+reg a,b,c ; wire d, bo;
+full_subtractor uut(a,b,c ,d,bo);
+initial
+begin
+a=0;b=0;c=0; #10
+a=0;b=0;c=1; #10
+a=0;b=1;c=0; #10
+a=0;b=1;c=1; #10
+a=1;b=0;c=0; #10
+a=1;b=0;c=1; #10
+a=1;b=1;c=0; #10
+a=1;b=1;c=1; #10
+$finish;
+end
+endmodule
